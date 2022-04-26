@@ -31,7 +31,6 @@ class HeaderPriceSelector extends Component {
     return (
       currencies &&
       currencies.map((currency) => {
-        console.log(selectedCurrency === currency.label)
         return (
           <Currency
             key={currency.symbol}
