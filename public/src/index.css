@@ -1,0 +1,19 @@
+:root {
+  --ff-primary: 'Raleway', sans-serif;
+
+  --clr-white: #fff;
+  --clr-text: #1d1f22;
+  --clr-primary: #5ece7b;
+
+  --container-width: min(90%, 70.5rem);
+  --margin-inline: auto;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.link {
+  text-decoration: none;
+}
