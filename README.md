@@ -6,13 +6,11 @@
 
 <h2>Pictures</h2>
 
-
 <h4> Product Display Page </h4>
 
 ![product display page image](/screenshots/productDisplayPage.jpg)
 
 <hr />
-
 
 <h4> Product List Page </h4>
 
@@ -20,13 +18,11 @@
 
 <hr />
 
-
 <h4> Product Successfully Added To Cart </h4>
 
 ![product added to cart success image](/screenshots/successMessage.png)
 
 <hr />
-
 
 <h4> Product Not In Stock</h4>
 
@@ -34,13 +30,11 @@
 
 <hr />
 
-
 <h4> Selectable Images</h4>
 
 ![product images selectable image](/screenshots/imageCarousel.jpg)
 
 <hr />
-
 
 <h4> Currency Switcher</h4>
 
@@ -48,13 +42,11 @@
 
 <hr />
 
-
 <h4> Cart Overlay </h4>
 
 ![cart overlay image](/screenshots/cartOverlay.png)
 
 <hr />
-
 
 <h4> Cart Page Image Slider </h4>
 
@@ -68,13 +60,11 @@
 
 <hr />
 
-
 <h4> Cart Page </h4>
 
 ![cart page image](/screenshots/cart.png)
 
 <hr />
-
 
 <h4> Remove From Cart </h4>
 
@@ -82,13 +72,11 @@
 
 <hr />
 
-
 <h4> Loader And Page Not Found Page </h4>
 
 ![page not found image](/screenshots/pageNotFoundAndLoader.png)
 
 <hr />
-
 
 <h4> Invalid Product Id </h4>
 
@@ -96,14 +84,11 @@
 
 <hr />
 
-
-
 <h4> Folder Structure and Project Dependancies </h4>
 
 ![folder structure image](/screenshots/folderStructureAndDependancies.png)
 
 <hr />
-
 
 <h4> Apollo Client </h4>
 
@@ -111,13 +96,11 @@
 
 <hr />
 
-
 <h4> Routing with React Router  </h4>
 
 ![routing image](/screenshots/dynamicRouting.png)
 
 <hr />
-
 
 <h4> Styled Components  </h4>
 
@@ -125,43 +108,40 @@
 
 <hr />
 
-
 <h4> CSS Variables  </h4>
 
 ![css stylesheet image](/screenshots/cssVariables.png)
 
 <hr />
 
-
-
 <h2> Description </h2>
 
- ```diff
- + This is a react front end that fetches data from graphQl end point using apollo-client.
- + The data is then displayed to the browser.
- + Only react-router-dom, styled-components and apollo-client are used
- + There are 2 add-to-card buttons, one on the product-list-page and the other on product-display-plage
- + When a product is added to cart, a user is notified with a success or failure message
- + When a product is added to cart; by default the first items of each of the available attribute lists is added
- + When the same product with the same attributes is added again, only product count is increased by one
- + When the same product with different attribute is added, it is stored as a different item
- + e.g: Nike shoe Size 40 is stored seperately from Nike shoe Size 41
- + Selected attributes are displayed on the cart together with the product
- + Cart total is the total count of items in a cart
- + When item count gets below 1 a delete item modal is displayed
- + Currency switcher is used to change the currency of displayed products
- + Clicking outside the currency switcher and cart overlay containers closes the containers
- + Small images on product-display-page are selectable
- + Image slider on the cart page can view images to the left or right of the current image
- + Loader is displayed while data is fetched
- + Page Not Found and Product not found pages are displayed when appropriate errors are encountered
+```diff
++ This is a react front end that fetches data from graphQl end point using apollo-client.
++ The data is then displayed to the browser.
++ Only react-router-dom, styled-components and apollo-client are used
++ There are 2 add-to-card buttons, one on the product-list-page and the other on product-display-plage
++ When a product is added to cart, a user is notified with a success or failure message
++ When a product is added to cart; by default the first items of each of the available attribute lists is added
++ When the same product with the same attributes is added again, only product count is increased by one
++ When the same product with different attribute is added, it is stored as a different item
++ e.g: Nike shoe Size 40 is stored seperately from Nike shoe Size 41
++ Selected attributes are displayed on the cart together with the product
++ Cart total is the total count of items in a cart
++ When item count gets below 1 a delete item modal is displayed
++ Currency switcher is used to change the currency of displayed products
++ Clicking outside the currency switcher and cart overlay containers closes the containers
++ Small images on product-display-page are selectable
++ Image slider on the cart page can view images to the left or right of the current image
++ Loader is displayed while data is fetched
++ Page Not Found and Product not found pages are displayed when appropriate errors are encountered
 ```
+
 :handbag::sandal::jeans::iphone::desktop_computer:
 
 <hr />
 
-
-<h2> Features :movie_camera: :camera: :floppy_disk: :video_camera:</h2>  
+<h2> Features :movie_camera: :camera: :floppy_disk: :video_camera:</h2>
 
 ```diff
 - View All Products
@@ -169,9 +149,10 @@
 - Add To Cart
 - Remove From Cart
 ```
+
 <hr />
 
-<h2> Stack || Languages :speech_balloon: :thought_balloon:</h2> 
+<h2> Stack || Languages :speech_balloon: :thought_balloon:</h2>
 
 ```diff
 # JavaScript (ES6+)
@@ -179,7 +160,6 @@
 # Styled-Components
 # Apollo Client
 ```
-
 
 <hr />
 
@@ -227,7 +207,6 @@
   
 <hr />
 
-
 <h2> Project Structure </h2>
 
 ```diff
@@ -235,20 +214,19 @@
 ```
 
 - assets
-   - icons, svg etc
+  - icons, svg etc
 - helpers
-   - common functions
+  - common functions
 - components
-   - header, loader etc
+  - header, loader etc
 - pages
-   - cart, PLP, PDP etc
+  - cart, PLP, PDP etc
 - App.js
 - index.js
-     
 
-<h2> RUNNING THE PROJECT :running: :running: :running: :runner: :runner:</h2> 
+<h2> RUNNING THE PROJECT :running: :running: :running: :runner: :runner:</h2>
 
-<h3> Requirements :warning:</h3> 
+<h3> Requirements :warning:</h3>
 
 <ul>
    <li>
@@ -288,7 +266,7 @@
 
 <h2> Set Up Project </h2>
 
-<em>Clone or Download this project</em> 
+<em>Clone or Download this project</em>
 
 <h3> Starting the Project: </h3>
 
@@ -302,12 +280,11 @@
     </li>
     
 ```diff
-# npm i
-# npm start
+# yarn install
+# yarn start
 ```
 </ul>
 
 <h4> :grinning: :grinning: :grinning: :grinning: :grinning: HAPPY HACKING!!!!!!!! :grinning: :grinning: :grinning: :grinning: :grinning: </h4>
 
-<hr />
 <hr />
