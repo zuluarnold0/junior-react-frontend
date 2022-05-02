@@ -1,14 +1,13 @@
 import styled from 'styled-components'
 
 export const RemoveFromCartModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-top: 80px;
-  height: calc(100% - 80px);
-  background-color: white;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
   opacity: 1;
   display: flex;
   align-items: center;
@@ -23,9 +22,10 @@ export const RemoveFromCartModalContainer = styled.div`
     color: var(--clr-text);
   }
   .remove-text-container {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
   }
   .remove-modal-name {
+    font-family: var(--ff-secondary);
     font-weight: 600;
     text-transform: uppercase;
   }
@@ -39,29 +39,36 @@ export const RemoveFromCartModalContainer = styled.div`
     align-items: center;
   }
   .delete-button {
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 43px;
     color: var(--clr-text);
     background-color: crimson;
     border: 1px solid crimson;
-    color: white;
-    outline: none;
-    font-size: 12px;
     font-family: var(--ff-primary);
     text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: white;
+    outline: none;
     cursor: pointer;
   }
   .cancel-button {
-    width: 120px;
-    height: 40px;
+    width: 140px;
+    height: 43px;
     border: none;
     outline: none;
-    font-size: 12px;
+    font-family: var(--ff-primary);
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
     color: var(--clr-white);
     border: 1px solid var(--clr-primary);
     background-color: var(--clr-primary);
-    font-family: var(--ff-primary);
-    text-transform: uppercase;
-    cursor: pointer;
   }
 `

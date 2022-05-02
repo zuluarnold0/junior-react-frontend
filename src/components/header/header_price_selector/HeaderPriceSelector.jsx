@@ -1,94 +1,64 @@
 import React, { Component, Fragment } from 'react'
+import { PriceContainer, PriceDropDownContent, Currency } from './style'
 import ChevronUp from '../../../assets/svg/ChevronUp'
 import ChevronDown from '../../../assets/svg/ChevronDown'
-import {
-  PriceContainer,
-  PriceDropDownContent,
-  Currency,
-  PriceModalContainer,
-} from './style'
 
 class HeaderPriceSelector extends Component {
-  state = {
-    showCurrencyDropdown: false,
+  showSelectedCurrencies = () => {
+    const { currencies, selectedCurrency } = this.props
+    return currencies.map((currency) => {
+      return (
+        <Fragment key={currency.symbol}>
+          {currency.label.toLowerCase() === selectedCurrency.toLowerCase() && (
+            <p>{currency.symbol}</p>
+          )}
+        </Fragment>
+      )
+    })
   }
 
-  showSelectedCurrencies = (currencies, selectedCurrency) => {
-    return (
-      currencies &&
-      currencies.map((currency) => {
-        return (
-          <Fragment key={currency.symbol}>
-            {currency.label.toLowerCase() ===
-              selectedCurrency.toLowerCase() && <p>{currency.symbol}</p>}
-          </Fragment>
-        )
-      })
-    )
+  setSelectedCurrency = (label) => {
+    this.props.setSelectedCurrency(label)
+    this.props.setDropDown('none')
+    this.props.clearDropdown()
   }
 
-  mapCurrencies = (currencies, selectedCurrency, setSelectedCurrency) => {
-    return (
-      currencies &&
-      currencies.map((currency) => {
-        return (
-          <Currency
-            key={currency.symbol}
-            onClick={() => setSelectedCurrency(currency.label)}
-          >
-            <p
-              className={
-                selectedCurrency === currency.label
-                  ? 'selected-currency'
-                  : 'text-currency'
-              }
-            >
-              {currency.symbol} {currency.label}
-            </p>
-          </Currency>
-        )
-      })
-    )
+  setCurrencyClass = (currency) => {
+    const { selectedCurrency } = this.props
+    return selectedCurrency === currency.label ? 'selected-link' : 'text-link'
   }
 
-  togglePriceModal = (e) => {
-    this.setState({ showCurrencyDropdown: true })
-
-    if (e.target.classList.contains('backdrop')) {
-      this.setState({ showCurrencyDropdown: false })
-    }
+  mapCurrencies = () => {
+    const { currencies } = this.props
+    return currencies.map((currency) => {
+      return (
+        <Currency
+          key={currency.symbol}
+          onClick={() => this.setSelectedCurrency(currency.label)}
+        >
+          <div className={this.setCurrencyClass(currency)}>
+            {currency.symbol} {currency.label}
+          </div>
+        </Currency>
+      )
+    })
   }
 
   render() {
-    const { currencies, selectedCurrency, setSelectedCurrency } = this.props
     return (
-      <PriceContainer onClick={(e) => this.togglePriceModal(e)}>
-        {this.showSelectedCurrencies(currencies, selectedCurrency)}
+      <PriceContainer>
+        {this.showSelectedCurrencies()}
         <div>
-          {this.state.showCurrencyDropdown ? (
+          <div className="chevron-up">
             <ChevronUp height={10} width={18} />
-          ) : (
+          </div>
+          <div className="chevron-down">
             <ChevronDown height={10} width={18} />
-          )}
+          </div>
         </div>
-        {this.state.showCurrencyDropdown ? (
-          <PriceModalContainer
-            className="backdrop"
-            onClick={(e) => this.togglePriceModal(e)}
-          >
-            <div className="price-modal-wrapper">
-              <PriceDropDownContent>
-                {this.mapCurrencies(
-                  currencies,
-                  selectedCurrency,
-                  setSelectedCurrency,
-                )}
-              </PriceDropDownContent>
-            </div>
-          </PriceModalContainer>
-        ) : (
-          <></>
-        )}
+        <PriceDropDownContent style={{ display: this.props.displayDropdown }}>
+          {this.mapCurrencies()}
+        </PriceDropDownContent>
       </PriceContainer>
     )
   }

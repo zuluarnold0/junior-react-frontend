@@ -1,58 +1,53 @@
-import React from 'react'
-import { gql } from '@apollo/client'
-import { setCategoryNames } from './helpers'
-import { graphql } from '@apollo/client/react/hoc'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import { ErrorPage, ProductDisplayPage, Cart, ProductListPage } from './pages'
+import Header from './components/header/Header'
+import {
+  Home,
+  ProductDisplayPage,
+  Cart,
+  ProductListPage,
+  ErrorPage,
+} from './pages'
 
-const QUERY_CATEGORY_NAMES = gql`
-  query GetCategoriesNames {
-    categories {
-      name
-    }
-  }
-`
-
-class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      routeNames: [],
-    }
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.data !== prevProps.data) {
-      const mappedCategories = setCategoryNames(this.props.data.categories)
-      this.setState({ routeNames: mappedCategories })
-    }
-  }
-
+export class App extends Component {
   mapRoutes = () => {
-    const { routeNames } = this.state
-    return (
-      routeNames &&
-      routeNames.map((item, i) => {
-        return (
-          <Route
-            exact
-            key={item}
-            path={i === 0 ? '/' : `/${item}`}
-            component={ProductListPage}
-          />
-        )
-      })
-    )
+    return this.props.categories.map((item, i) => {
+      return (
+        <Route exact key={i} path={`/${item}`} component={ProductListPage} />
+      )
+    })
   }
+
   render() {
-    const { routeNames } = this.state
+    const { categories_isLoading, selectedCategory } = this.props
+
+    if (!selectedCategory.length) {
+      return (
+        <BrowserRouter>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/pages/cart" component={Cart} />
+            <Route
+              exact
+              path="/pages/product-display-page/:productId"
+              component={ProductDisplayPage}
+            />
+          </Switch>
+        </BrowserRouter>
+      )
+    }
+
     return (
       <BrowserRouter>
-        {routeNames.length && (
+        <Header />
+        {!categories_isLoading && (
           <Switch>
             {this.mapRoutes()}
-            <Route path="/pages/cart" component={Cart} />
+            <Route exact path="/pages/cart" component={Cart} />
             <Route
+              exact
               path="/pages/product-display-page/:productId"
               component={ProductDisplayPage}
             />
@@ -64,4 +59,12 @@ class App extends React.Component {
   }
 }
 
-export default graphql(QUERY_CATEGORY_NAMES)(App)
+const mapStateToProps = (state) => {
+  return {
+    categories: state.categories.categories,
+    categories_isLoading: state.categories.categories_isLoading,
+    selectedCategory: state.categories.selectedCategory,
+  }
+}
+
+export default connect(mapStateToProps)(App)

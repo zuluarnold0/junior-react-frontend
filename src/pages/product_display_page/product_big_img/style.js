@@ -1,8 +1,8 @@
 import styled from 'styled-components'
 
 export const ProductBigImgContainer = styled.div`
-  height: 450px;
-  max-width: 550px;
+  width: 610px;
+  height: 511px;
   margin-right: 80px;
   @media only screen and (max-width: 1000px) {
     height: 350px;

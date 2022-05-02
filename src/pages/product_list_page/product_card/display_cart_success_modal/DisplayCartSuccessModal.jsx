@@ -6,7 +6,7 @@ export class DisplayCartSuccessModal extends Component {
     const { showCartSuccessModal, name, setShowCartSuccessModal } = this.props
     setTimeout(() => {
       showCartSuccessModal && setShowCartSuccessModal(false)
-    }, 3000)
+    }, 1000)
     return (
       <DisplayCartSuccessModalContainer>
         <div className="success-modal-content">

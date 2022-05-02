@@ -1,79 +1,50 @@
 import React, { Component } from 'react'
-import ShoppingCart from '../../../assets/svg/ShoppingCart'
-import { Link } from 'react-router-dom'
-import HeaderCartList from '../header_cart_list/HeaderCartList'
-import { calculateItems } from '../../../helpers'
 import {
   CartContainer,
   ShoppinCartTopRightContainer,
   ModalContainer,
   NoProductsInCart,
 } from './style'
+import ShoppingCart from '../../../assets/svg/ShoppingCart'
+import HeaderCartList from '../header_cart_list/HeaderCartList'
+import OverlayButtons from '../overlay_buttons/OverlayButtons'
+import HeaderCartTotal from '../header_cart_total/HeaderCartTotal'
 
 class HeaderCartOverlay extends Component {
-  state = {
-    showCartDropdown: false,
-  }
-
-  setUpdatedCartToState = (updatedCart) => {
-    this.setState({ cart: updatedCart })
-  }
-
-  toggleShowCartModal = (e) => {
-    this.setState({ showCartDropdown: true })
-
-    if (e.target.classList.contains('backdrop')) {
-      this.setState({ showCartDropdown: false })
-    }
-  }
-
   render() {
-    const { selectedCurrency, setUpdatedCartToState, cart } = this.props
-    const cartTotal = calculateItems(cart)
+    const { cart, selectedCurrency, itemsInCart } = this.props
     return (
       <>
         <CartContainer
           className="modal-container-wrapper"
-          onClick={(e) => this.toggleShowCartModal(e)}
+          onClick={() => this.props.openShowCartModal()}
         >
           <div className="shopping-cart-box">
-            <ShoppingCart color={'black'} height={16} width={18} />
-            {cartTotal > 0 ? (
-              <div className="cart-count">{cartTotal}</div>
-            ) : (
-              <></>
-            )}
+            <ShoppingCart color={'#43464E'} height={18} width={20} />
+            {itemsInCart > 0 && <div className="cart-count">{itemsInCart}</div>}
           </div>
         </CartContainer>
-        {this.state.showCartDropdown ? (
+        {this.props.showCartDropdown && (
           <ModalContainer
             className="backdrop"
-            onClick={(e) => this.toggleShowCartModal(e)}
+            onClick={(e) => this.props.closeShowCartModal(e)}
           >
             <div className="modal-container-wrapper">
               <ShoppinCartTopRightContainer>
                 <div className="shopping-title-box">
-                  <span className="shopping-title">My Bag</span>
+                  <span className="shopping-title">My Bag,</span>
                   <span className="shopping-title-count">
-                    {`${cartTotal} items`}
+                    {`${itemsInCart} items`}
                   </span>
                 </div>
-                {cartTotal > 0 ? (
+                {itemsInCart > 0 ? (
                   <>
                     <HeaderCartList
-                      cart={cart}
-                      setShowCartDropdown={this.setShowCartDropdown}
                       selectedCurrency={selectedCurrency}
-                      setUpdatedCartToState={setUpdatedCartToState}
+                      cart={cart}
                     />
-                    <div className="cart-buttons">
-                      <Link to="/pages/cart" className="link">
-                        <button className="view-button">view bag</button>
-                      </Link>
-                      <Link to="/pages/checkout" className="link">
-                        <button className="checkout-button">check out</button>
-                      </Link>
-                    </div>
+                    <HeaderCartTotal />
+                    <OverlayButtons closeModal={this.props.closeModal} />
                   </>
                 ) : (
                   <NoProductsInCart>
@@ -83,8 +54,6 @@ class HeaderCartOverlay extends Component {
               </ShoppinCartTopRightContainer>
             </div>
           </ModalContainer>
-        ) : (
-          <></>
         )}
       </>
     )

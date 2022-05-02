@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 
 export const DisplayCartFailModalContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-  background-color: white;
-  opacity: 0.7;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
   .fail-modal-content {
     font-family: var(--ff-primary);
     font-style: normal;

@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const PageTitleHeader = styled.h1`
-  padding-top: 80px;
-  padding-bottom: 83px;
   font-family: var(--ff-primary);
   font-style: normal;
   font-weight: 400;

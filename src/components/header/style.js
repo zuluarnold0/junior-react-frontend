@@ -8,6 +8,7 @@ export const HeaderContainer = styled.div`
   top: 0px;
   display: flex;
   align-items: center;
+  background-color: var(--clr-white);
   .header-wrapper {
     display: flex;
     align-items: center;
@@ -18,24 +19,27 @@ export const HeaderContainer = styled.div`
   }
 `
 
-export const Logo = styled.div`
+export const HeaderLogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 41px;
-  .logo-icon {
-    height: 28.619224548339844px;
-    width: 31.181222915649414px;
-  }
   @media only screen and (max-width: 400px) {
     display: none;
   }
+`
+
+export const NavigationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 1;
 `
 
 export const Actions = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 40px;
+  height: 100%;
   flex: 1;
 `

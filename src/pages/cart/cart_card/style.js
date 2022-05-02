@@ -5,17 +5,19 @@ export const CartCardContainer = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-  border-top: 1px solid #ddd;
-  padding: 20px 0;
+  border-top: 1px solid #e5e5e5;
+  padding: 24px 0;
   .content-container {
-    max-width: 200px;
   }
   .content-title {
     font-family: var(--ff-primary);
     font-style: normal;
     text-transform: capitalize;
     color: var(--clr-text);
-    padding-bottom: 10px;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 27px;
+    padding-bottom: 16px;
     @media only screen and (max-width: 450px) {
       font-size: 22px;
     }
@@ -26,20 +28,20 @@ export const CartCardContainer = styled.div`
     font-weight: 400;
     text-transform: capitalize;
     color: var(--clr-text);
+    font-size: 30px;
+    line-height: 27px;
+    padding-bottom: 20px;
     @media only screen and (max-width: 450px) {
       font-size: 22px;
     }
   }
   .price-value {
-    margin: 10px 0 20px 0;
-    font-size: 18px;
-    font-weight: 600;
     font-family: var(--ff-primary);
     font-style: normal;
     color: var(--clr-text);
-  }
-  .attribute-container {
-    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
   }
 
   .attribute-name {
@@ -72,7 +74,6 @@ export const CartCardContainer = styled.div`
   }
 
   .img-action-container {
-    width: 170px;
     display: flex;
   }
 
@@ -81,15 +82,15 @@ export const CartCardContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    margin-right: 10px;
+    margin-right: 24px;
   }
   .action-add {
     border: 1px solid var(--clr-text);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    height: 45px;
+    width: 45px;
     font-weight: 500;
     font-size: 30px;
     cursor: pointer;
@@ -111,15 +112,15 @@ export const CartCardContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    height: 45px;
+    width: 45px;
     cursor: pointer;
     @media only screen and (max-width: 450px) {
       width: 30px;
       height: 30px;
     }
     span {
-      width: 16px;
+      width: 15px;
       height: 1px;
       background-color: var(--clr-text);
       @media only screen and (max-width: 450px) {
@@ -130,12 +131,13 @@ export const CartCardContainer = styled.div`
 
   .display-slider-img-box {
     overflow: hidden;
-    width: 120px;
     position: relative;
+    height: 288px;
+    width: 200px;
   }
 
   .slider-wrapper {
-    width: 1000px;
+    width: 1400px;
     height: 100%;
     display: flex;
     transform: translateX(0px);
@@ -144,56 +146,111 @@ export const CartCardContainer = styled.div`
 
   .single-image-box {
     height: 100%;
-    width: 120px;
+    width: 200px;
     display: flex;
     align-items: center;
   }
 
   .single-image {
     width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 
   .left-arrow {
     position: absolute;
-    top: 50%;
-    left: 0%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    bottom: 16px;
+    right: 48px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--clr-black);
     cursor: pointer;
   }
   .right-arrow {
     position: absolute;
-    top: 50%;
-    right: 0%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background-color: var(--clr-black);
     cursor: pointer;
   }
 `
+export const AttributesContainer = styled.div`
+  margin: 20px 0 16px 0;
 
-export const SelectedSwatchAttribute = styled.div`
-  border: 1px solid var(--clr-text);
-  margin-right: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50px;
-  height: 36px;
-  font-family: var(--ff-primary);
-  text-transform: uppercase;
-  font-weight: 500;
-  font-size: 13px;
-  color: var(--clr-white);
-  @media only screen and (max-width: 450px) {
-    width: 40px;
-    height: 30px;
+  .attributes-heading {
+    font-family: var(--ff-secondary);
+    text-transform: uppercase;
+    color: var(--clr-text);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
+    margin: 7px 0px;
   }
-
+  .attributes-box {
+    display: flex;
+    align-items: center;
+  }
+  .item {
+    border: 1px solid var(--clr-text);
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 63px;
+    height: 45px;
+    font-family: var(--ff-basic);
+    text-transform: uppercase;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-medium);
+    box-sizing: border-box;
+    @media only screen and (max-width: 1000px) {
+      width: 40px;
+    }
+  }
+  .selected-item {
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 63px;
+    height: 45px;
+    font-family: var(--ff-basic);
+    text-transform: uppercase;
+    font-style: normal;
+    color: var(--clr-white);
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    background: var(--clr-text);
+    border: 1px solid var(--clr-text);
+    box-sizing: border-box;
+    @media only screen and (max-width: 1000px) {
+      width: 40px;
+    }
+  }
+  .selected-swatch {
+    border: 1px solid #5ece7b;
+  }
+`
+export const SwatchAttributeContainer = styled.div`
+  margin-right: 8px;
+`
+export const SwatchAttribute = styled.div`
+  width: 32px;
+  height: 32px;
+  border: 2px solid #fff;
   ${(props) =>
     props.primary &&
     css`

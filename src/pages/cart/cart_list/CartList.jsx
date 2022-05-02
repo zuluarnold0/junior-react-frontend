@@ -3,29 +3,17 @@ import CartCard from '../cart_card/CartCard'
 import { CartListContainer } from './style'
 
 class CartList extends Component {
-  mapProducts = (cart, selectedCurrency, setUpdatedCartToState) => {
-    return (
-      cart &&
-      cart.map((product) => {
-        return (
-          <CartCard
-            product={product}
-            key={product.idOfProductInCart}
-            selectedCurrency={selectedCurrency}
-            setUpdatedCartToState={setUpdatedCartToState}
-          />
-        )
-      })
-    )
+  mapCart = () => {
+    return this.props.cart.map((product, i) => (
+      <CartCard
+        product={product}
+        key={i}
+        showDeleteModal={this.props.showDeleteModal}
+      />
+    ))
   }
-
   render() {
-    const { cart, selectedCurrency, setUpdatedCartToState } = this.props
-    return (
-      <CartListContainer>
-        {this.mapProducts(cart, selectedCurrency, setUpdatedCartToState)}
-      </CartListContainer>
-    )
+    return <CartListContainer>{this.mapCart()}</CartListContainer>
   }
 }
 

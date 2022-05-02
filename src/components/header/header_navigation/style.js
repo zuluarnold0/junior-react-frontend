@@ -2,13 +2,7 @@ import styled from 'styled-components'
 
 export const Navigation = styled.div`
   height: 100%;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
   display: flex;
-  align-items: center;
-  flex: 1;
 
   .navigation-link {
     height: 100%;

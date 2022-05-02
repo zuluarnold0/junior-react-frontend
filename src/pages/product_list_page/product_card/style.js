@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
 export const ProductCardContainer = styled.div`
-  height: 364px;
-  width: 310px;
+  height: 380px;
+  width: 330px;
   margin: 20px;
   position: relative;
-
   .product-card-img {
     height: 290px;
     width: 100%;
@@ -23,11 +22,11 @@ export const ProductCardContainer = styled.div`
   .product-card-img-box .img {
     height: 100%;
     width: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
   .content {
     height: 50px;
-    width: 278px;
+    width: 298px;
     margin: 0 16px;
     position: relative;
     @media only screen and (max-width: 350px) {
@@ -35,6 +34,7 @@ export const ProductCardContainer = styled.div`
     }
   }
   .title {
+    margin-top: 16px;
     font-family: var(--ff-primary);
     text-transform: capitalize;
     font-style: normal;
@@ -45,9 +45,9 @@ export const ProductCardContainer = styled.div`
   .price {
     font-family: var(--ff-primary);
     font-style: normal;
-    font-weight: 600;
     font-size: 18px;
     color: var(--clr-text);
+    font-weight: 500;
   }
   .trolley-container {
     display: none;
@@ -59,12 +59,12 @@ export const ProductCardContainer = styled.div`
   }
   &:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 20px #ddd;
+    box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
     .trolley-container {
       position: absolute;
       z-index: 2;
-      bottom: 70px;
-      right: 20px;
+      bottom: 90px;
+      right: 30px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -86,8 +86,6 @@ export const ProductCardContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
-    opacity: 0.5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -96,8 +94,10 @@ export const ProductCardContainer = styled.div`
   .out-of-stock {
     font-family: var(--ff-primary);
     font-style: normal;
-    font-weight: 500;
     text-transform: capitalize;
-    color: dimgray;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 160%;
+    color: #8d8f9a;
   }
 `

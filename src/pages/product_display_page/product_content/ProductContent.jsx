@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import HtmlParser from 'html-react-parser'
 import { findSelectedPrice } from '../../../helpers'
 import Attributes from './attributes/Attributes'
 import { ProductContentContainer } from './style'
@@ -158,8 +159,8 @@ export class ProductContent extends Component {
 
     return (
       <ProductContentContainer>
-        <h2 className="content-title">{product.name}</h2>
-        <h2 className="content-subtitle">{product.brand}</h2>
+        <h2 className="content-title">{product.brand}</h2>
+        <h2 className="content-subtitle">{product.name}</h2>
         <Attributes
           attributes={product.attributes}
           selectedAttributes={selectedAttributes}
@@ -184,9 +185,7 @@ export class ProductContent extends Component {
         >
           add to cart
         </button>
-        <div className="description">
-          <div dangerouslySetInnerHTML={{ __html: product.description }} />
-        </div>
+        <div className="description">{HtmlParser(product.description)}</div>
       </ProductContentContainer>
     )
   }

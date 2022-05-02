@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
-import ChevronRight from '../../../assets/svg/ChevronRight'
-import ChevronLeft from '../../../assets/svg/ChevronLeft'
-import { CartCardContainer, SelectedSwatchAttribute } from './style'
+import { connect } from 'react-redux'
+import {
+  CartCardContainer,
+  AttributesContainer,
+  SwatchAttributeContainer,
+  SwatchAttribute,
+} from './style'
 import {
   findSelectedPrice,
   handleQuantityDecrease,
   handleQuantityIncrease,
   handleRemoveFromCart,
 } from '../../../helpers'
+import ChevronRight from '../../../assets/svg/ChevronRight'
+import ChevronLeft from '../../../assets/svg/ChevronLeft'
+import { setUpdatedCartToState } from '../../../redux/actions/cartActions'
 import RemoveFromCartModal from '../../../components/remove_item_from_cart/RemoveItemFromCart'
 
 class CartCard extends Component {
@@ -36,12 +43,12 @@ class CartCard extends Component {
     return (
       <div
         className="slider-wrapper"
-        style={{ transform: `translateX(-${currentSlide * 120}px)` }}
+        style={{ transform: `translateX(-${currentSlide * 200}px)` }}
       >
         {product.gallery &&
-          product.gallery.map((url) => {
+          product.gallery.map((url, i) => {
             return (
-              <div className="single-image-box" key={url}>
+              <div className="single-image-box" key={i}>
                 <img
                   alt="ecommerce cart item"
                   className="single-image"
@@ -54,25 +61,51 @@ class CartCard extends Component {
     )
   }
 
-  displaySelectedAttributes = () => {
+  displayAttributeItems = (attribute) => {
+    const { items, type, name } = attribute
     const { selectedAttributes } = this.props.product
-    return (
-      selectedAttributes &&
-      selectedAttributes.map((attribute) => {
+
+    return items.map((item) => {
+      const foundAttribute = selectedAttributes.find((selected) => {
         return (
-          <div className="attribute-container" key={attribute.attributeName}>
-            <p className="attribute-name">{attribute.attributeName}</p>
-            {attribute.itemType === 'swatch' ? (
-              <SelectedSwatchAttribute primary={attribute.itemName}>
-                {attribute.itemName}
-              </SelectedSwatchAttribute>
-            ) : (
-              <div className="item-name">{attribute.itemName}</div>
-            )}
-          </div>
+          selected.attributeName === name &&
+          selected.itemName === item.displayValue
         )
       })
-    )
+
+      return type.toLowerCase() !== 'swatch' ? (
+        <div
+          key={item.id}
+          className={foundAttribute ? 'selected-item' : 'item'}
+        >
+          {item.value}
+        </div>
+      ) : (
+        <SwatchAttributeContainer
+          key={item.id}
+          className={foundAttribute ? 'selected-swatch' : ''}
+        >
+          <SwatchAttribute primary={item.value}></SwatchAttribute>
+        </SwatchAttributeContainer>
+      )
+    })
+  }
+
+  displayAttributes = () => {
+    const { attributes } = this.props.product
+    return attributes.map((attribute, i) => {
+      return (
+        <AttributesContainer key={i}>
+          <h5 className="attributes-heading">
+            {attribute.name}
+            {':'}
+          </h5>
+          <div className="attributes-box">
+            {this.displayAttributeItems(attribute)}
+          </div>
+        </AttributesContainer>
+      )
+    })
   }
 
   showDeleteModal = (value) => {
@@ -80,37 +113,39 @@ class CartCard extends Component {
   }
 
   removeFromCart = () => {
-    const { product, setUpdatedCartToState } = this.props
+    const { product } = this.props
     handleRemoveFromCart(
       product.idOfProductInCart,
-      setUpdatedCartToState,
+      this.props.setUpdatedCartToState,
       this.showDeleteModal,
     )
   }
 
   render() {
     const { currentSlide } = this.state
-    const { product, selectedCurrency, setUpdatedCartToState } = this.props
+    const { product, selectedCurrency } = this.props
     const price = findSelectedPrice(selectedCurrency, product.prices)
-    const displayedPrice = price[0].amount * product.count
     return (
       <>
         <CartCardContainer>
           <div className="content-container">
-            <h2 className="content-title">{product.name}</h2>
-            <h2 className="content-subtitle">{product.brand}</h2>
+            <h2 className="content-title">{product.brand}</h2>
+            <h2 className="content-subtitle">{product.name}</h2>
             <p className="price-value">
-              {price[0].currency.symbol} {displayedPrice.toFixed(2)}
+              {price[0].currency.symbol} {price[0].amount.toFixed(2)}
             </p>
 
-            {this.displaySelectedAttributes()}
+            {this.displayAttributes()}
           </div>
           <div className="img-action-container">
             <div className="action-container">
               <div
                 className="action-add"
                 onClick={() =>
-                  handleQuantityIncrease(product, setUpdatedCartToState)
+                  handleQuantityIncrease(
+                    product,
+                    this.props.setUpdatedCartToState,
+                  )
                 }
               >
                 +
@@ -121,7 +156,7 @@ class CartCard extends Component {
                 onClick={() =>
                   handleQuantityDecrease(
                     product,
-                    setUpdatedCartToState,
+                    this.props.setUpdatedCartToState,
                     this.showDeleteModal,
                   )
                 }
@@ -135,29 +170,39 @@ class CartCard extends Component {
                 className="left-arrow"
                 onClick={() => this.handleLeftClick(currentSlide, product)}
               >
-                <ChevronLeft width={14} height={14} color={'#aaa'} />
+                <ChevronLeft />
               </div>
               <div
                 className="right-arrow"
                 onClick={() => this.handleRightClick(currentSlide, product)}
               >
-                <ChevronRight width={20} height={20} color={'#aaa'} />
+                <ChevronRight />
               </div>
             </div>
           </div>
         </CartCardContainer>
-        {this.state.deleteItem ? (
+        {this.state.deleteItem && (
           <RemoveFromCartModal
             name={product.name}
             removeFromCart={this.removeFromCart}
             showDeleteModal={this.showDeleteModal}
           />
-        ) : (
-          <></>
         )}
       </>
     )
   }
 }
 
-export default CartCard
+const mapStateToProps = (state) => {
+  return {
+    selectedCurrency: state.currencies.selectedCurrency,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUpdatedCartToState: (cart) => dispatch(setUpdatedCartToState(cart)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartCard)

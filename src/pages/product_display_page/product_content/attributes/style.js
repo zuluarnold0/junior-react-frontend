@@ -6,11 +6,13 @@ export const AttributesContainer = styled.div`
     margin: 20px 0;
   }
   .sizes-heading {
-    font-family: var(--ff-primary);
+    font-family: var(--ff-secondary);
     text-transform: uppercase;
-    font-weight: 600;
-    font-size: 15px;
     color: var(--clr-text);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 18px;
   }
   .sizes-box {
     display: flex;
@@ -23,32 +25,37 @@ export const AttributesContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 36px;
-
-    font-family: var(--ff-primary);
+    width: 63px;
+    height: 45px;
+    font-family: var(--ff-basic);
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    color: var(--clr-text-medium);
+    box-sizing: border-box;
     @media only screen and (max-width: 1000px) {
       width: 40px;
     }
   }
   .selected-size {
-    border: 1px solid dimgray;
-    background-color: dimgray;
     margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 36px;
-
-    font-family: var(--ff-primary);
+    width: 63px;
+    height: 45px;
+    font-family: var(--ff-basic);
     text-transform: uppercase;
-    font-weight: 500;
-    font-size: 13px;
+    font-style: normal;
     color: var(--clr-white);
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    background: var(--clr-text);
+    border: 1px solid var(--clr-text);
+    box-sizing: border-box;
     @media only screen and (max-width: 1000px) {
       width: 40px;
     }
@@ -57,28 +64,21 @@ export const AttributesContainer = styled.div`
   .selected-size {
     cursor: pointer;
   }
+  .selected-swatch {
+    border: 1px solid #5ece7b;
+  }
+`
+export const SwatchAttributeContainer = styled.div`
+  margin-right: 8px;
+  cursor: pointer;
 `
 export const SwatchAttribute = styled.div`
-    border: 1px solid var(--clr-text);
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 50px;
-    height: 36px;
-    cursor: pointer;
-    font-family: var(--ff-primary);
-    text-transform: uppercase;
-    font-weight: 500;
-    font-size: 13px;
-    @media only screen and (max-width: 1000px) {
-      width: 40px;
-    }
-  }
-  
-    ${(props) =>
-      props.primary &&
-      css`
-        background: ${props.primary};
-      `}
-  `
+  width: 32px;
+  height: 32px;
+  border: 2px solid #fff;
+  ${(props) =>
+    props.primary &&
+    css`
+      background: ${props.primary};
+    `}
+`

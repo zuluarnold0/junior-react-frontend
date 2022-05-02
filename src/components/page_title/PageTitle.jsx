@@ -3,8 +3,7 @@ import { PageTitleHeader } from './style'
 
 export class PageTitle extends Component {
   render() {
-    const { pageTitle } = this.props
-    return <PageTitleHeader>{pageTitle}</PageTitleHeader>
+    return <PageTitleHeader>{this.props.pageTitle}</PageTitleHeader>
   }
 }
 

@@ -9,17 +9,19 @@ export const CartContainer = styled.div`
   }
   .cart-count {
     position: absolute;
-    top: -8px;
+    top: -12px;
     right: -10px;
-    width: 18px;
-    height: 18px;
-    border-radius: 50px;
-    background-color: var(--clr-text);
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
     color: var(--clr-white);
+    background-color: var(--clr-black);
+    font-family: var(--ff-tertiary);
+    font-size: 14px;
+    font-weight: 700;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
   }
   @media only screen and (max-width: 700px) {
     height: 16px;
@@ -29,7 +31,7 @@ export const CartContainer = styled.div`
 
 export const ModalContainer = styled.div`
   display: block;
-  position: absolute;
+  position: fixed;
   z-index: 1;
   margin-top: 80px;
   left: 0;
@@ -50,57 +52,34 @@ export const ModalContainer = styled.div`
 export const ShoppinCartTopRightContainer = styled.div`
   display: block;
   position: absolute;
-  background-color: #f9f9f9;
-  top: 10px;
-  width: 250px;
-  padding: 10px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  top: 0;
+  padding: 32px 16px;
+  width: 325px;
+  max-height: 577px;
+  background: #ffffff;
+  box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
   z-index: 2;
   .shopping-title-box {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
   }
   .shopping-title {
     font-family: var(--ff-primary);
-    font-size: 14px;
-    font-weight: 600;
     color: var(--clr-text);
     margin-right: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
   }
   .shopping-title-count {
     font-family: var(--ff-primary);
     font-size: 14px;
     font-weight: 500;
     color: var(--clr-text);
-  }
-
-  .cart-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .view-button {
-    width: 120px;
-    height: 40px;
-    color: var(--clr-text);
-    border: 1px solid var(--clr-text);
-    outline: none;
-    font-size: 12px;
-    font-family: var(--ff-primary);
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  .checkout-button {
-    width: 120px;
-    height: 40px;
-    border: none;
-    outline: none;
-    font-size: 12px;
-    color: var(--clr-white);
-    border: 1px solid var(--clr-primary);
-    background-color: var(--clr-primary);
-    font-family: var(--ff-primary);
-    text-transform: uppercase;
-    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 26px;
+    letter-spacing: 0em;
   }
 `
 

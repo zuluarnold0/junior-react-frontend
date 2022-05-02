@@ -5,11 +5,21 @@ export const HeaderCartTotalContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 30px 0;
-  .total {
-    font-family: var(--ff-primary);
-    font-size: 14px;
-    font-weight: 600;
+  margin: 32px 0;
+  .total-key {
     color: var(--clr-text);
+    font-family: var(--ff-tertiary);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0em;
+  }
+  .total-value {
+    color: var(--clr-text);
+    font-family: Raleway;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 26px;
+    letter-spacing: 0em;
   }
 `

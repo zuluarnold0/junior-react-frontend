@@ -24,7 +24,7 @@ export const ProductSmallImgsContainer = styled.div`
     }
     &:hover {
       cursor: pointer;
-      box-shadow: 0px 0px 20px #ddd;
+      box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.19);
     }
   }
   .small-img {

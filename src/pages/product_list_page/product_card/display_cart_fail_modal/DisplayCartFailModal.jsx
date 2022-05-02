@@ -6,7 +6,7 @@ class DisplayCartFailModal extends Component {
     const { showCartFailModal, name, setShowFailModal } = this.props
     setTimeout(() => {
       showCartFailModal && setShowFailModal(false)
-    }, 3000)
+    }, 1000)
     return (
       <DisplayCartFailModalContainer>
         <div className="fail-modal-content">

@@ -11,8 +11,6 @@ export const ProductDisplayPageContainer = styled.div`
       display: block;
     }
   }
-
-  .warning-modal-content,
   .fail-modal-content,
   .success-modal-content {
     font-family: var(--ff-primary);
@@ -27,9 +25,6 @@ export const ProductDisplayPageContainer = styled.div`
   }
   .fail-modal-content {
     border: 5px solid rgb(241, 48, 48);
-  }
-  .warning-modal-content {
-    border: 5px solid yellow;
   }
   .message-modal-name {
     font-weight: 600;

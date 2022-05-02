@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { AttributesContainer, SwatchAttribute } from './style'
+import {
+  AttributesContainer,
+  SwatchAttribute,
+  SwatchAttributeContainer,
+} from './style'
 
 class Attributes extends Component {
   displayAttributeItems = (attribute) => {
@@ -34,19 +38,22 @@ class Attributes extends Component {
             {item.value}
           </div>
         ) : (
-          <SwatchAttribute
-            primary={item.value}
+          <SwatchAttributeContainer
             key={item.id}
-            className={foundAttribute ? 'selected-size' : ''}
-            onClick={() =>
-              updateSelectedAttributes({
-                attributeName: name,
-                itemName: item.displayValue,
-                itemType: type,
-                itemValue: item.value,
-              })
-            }
-          ></SwatchAttribute>
+            className={foundAttribute ? 'selected-swatch' : ''}
+          >
+            <SwatchAttribute
+              primary={item.value}
+              onClick={() =>
+                updateSelectedAttributes({
+                  attributeName: name,
+                  itemName: item.displayValue,
+                  itemType: type,
+                  itemValue: item.value,
+                })
+              }
+            ></SwatchAttribute>
+          </SwatchAttributeContainer>
         )
       })
     )
@@ -59,7 +66,10 @@ class Attributes extends Component {
       attributes.map((attribute) => {
         return (
           <AttributesContainer key={attribute.id}>
-            <h5 className="sizes-heading">{attribute.name}</h5>
+            <h5 className="sizes-heading">
+              {attribute.name}
+              {':'}
+            </h5>
             <div className="sizes-box">
               {this.displayAttributeItems(attribute)}
             </div>

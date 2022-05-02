@@ -5,6 +5,6 @@ export const HeaderCartListContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  max-height: 300px;
+  max-height: 320px;
   overflow-y: scroll;
 `

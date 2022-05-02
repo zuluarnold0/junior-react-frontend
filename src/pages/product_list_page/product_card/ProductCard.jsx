@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import { ProductCardContainer } from './style'
+import { setUpdatedCartToState } from '../../../redux/actions/cartActions'
 import ShoppingCart from '../../../assets/svg/ShoppingCart'
 import { findSelectedPrice } from '../../../helpers'
 import DisplayCartFailModal from './display_cart_fail_modal/DisplayCartFailModal'
@@ -41,18 +43,13 @@ class ProductCard extends Component {
     this.setState({ showCartSuccessModal: value })
   }
 
-  createNewCart = (
-    cart,
-    product,
-    setUpdatedCartToState,
-    setShowCartSuccessModal,
-  ) => {
+  createNewCart = (cart, product, setShowCartSuccessModal) => {
     const { selectedAttributes } = this.state
     const idOfProductInCart = product.id + Date.now()
     cart.push({ ...product, idOfProductInCart, selectedAttributes, count: 1 })
     window.sessionStorage.setItem('cart', JSON.stringify(cart))
     setShowCartSuccessModal(true)
-    setUpdatedCartToState(cart)
+    this.props.setUpdatedCartToState(cart)
   }
 
   findAttribute = (attributes) => {
@@ -74,12 +71,7 @@ class ProductCard extends Component {
     return false
   }
 
-  updateExistingCart = (
-    cart,
-    product,
-    setUpdatedCartToState,
-    setShowCartSuccessModal,
-  ) => {
+  updateExistingCart = (cart, product, setShowCartSuccessModal) => {
     let updatedCart = false
     let cartWithAttributes = []
     const { selectedAttributes } = this.state
@@ -106,15 +98,10 @@ class ProductCard extends Component {
 
     window.sessionStorage.setItem('cart', JSON.stringify(cartWithAttributes))
     setShowCartSuccessModal(true)
-    setUpdatedCartToState(cartWithAttributes)
+    this.props.setUpdatedCartToState(cartWithAttributes)
   }
 
-  handleAddToCart = (
-    product,
-    setShowFailModal,
-    setShowCartSuccessModal,
-    setUpdatedCartToState,
-  ) => {
+  handleAddToCart = (product, setShowFailModal, setShowCartSuccessModal) => {
     if (!product.inStock) {
       return setShowFailModal(true)
     }
@@ -127,25 +114,15 @@ class ProductCard extends Component {
     }
 
     if (!cart.length) {
-      this.createNewCart(
-        cart,
-        product,
-        setUpdatedCartToState,
-        setShowCartSuccessModal,
-      )
+      this.createNewCart(cart, product, setShowCartSuccessModal)
     } else {
-      this.updateExistingCart(
-        cart,
-        product,
-        setUpdatedCartToState,
-        setShowCartSuccessModal,
-      )
+      this.updateExistingCart(cart, product, setShowCartSuccessModal)
     }
   }
 
   render() {
     const { showCartSuccessModal, showCartFailModal } = this.state
-    const { selectedCurrency, product, setUpdatedCartToState } = this.props
+    const { selectedCurrency, product } = this.props
     const price = findSelectedPrice(selectedCurrency, product.prices)
     return (
       <ProductCardContainer>
@@ -160,7 +137,9 @@ class ProductCard extends Component {
             </div>
           </div>
           <div className="content">
-            <p className="title">{product.name}</p>
+            <p className="title">
+              {product.brand} {product.name}
+            </p>
             <p className="price">
               {price[0].currency.symbol} {price[0].amount}
             </p>
@@ -173,7 +152,6 @@ class ProductCard extends Component {
               product,
               this.setShowFailModal,
               this.setShowCartSuccessModal,
-              setUpdatedCartToState,
             )
           }
         >
@@ -209,4 +187,10 @@ class ProductCard extends Component {
   }
 }
 
-export default ProductCard
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUpdatedCartToState: (cart) => dispatch(setUpdatedCartToState(cart)),
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductCard)

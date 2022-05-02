@@ -13,7 +13,7 @@ export class RemoveFromCartModal extends Component {
               {'Are you sure you want to remove '}
             </span>
             <span className="remove-modal-name">{name}</span>
-            <span className="remove-modal-text">{' from cart?'}</span>
+            <span className="remove-modal-text">{' from the cart?'}</span>
           </div>
           <div className="remove-modal-buttons">
             <button className="delete-button" onClick={() => removeFromCart()}>
